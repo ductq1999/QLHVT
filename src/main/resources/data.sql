@@ -1,0 +1,11 @@
+create database qlhvt;
+use qlhvt;
+ CREATE TABLE Driver (
+`id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`name` VARCHAR(30) NOT NULL,
+`licenseNumber` VARCHAR(30) NOT NULL,
+`licenseType` VARCHAR(30) NOT NULL,
+`address` VARCHAR(30) NOT NULL,
+`dateOfBirth` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+`seniority` VARCHAR(30) NOT NULL
+);
