@@ -1,7 +1,11 @@
 package qlhvt.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "trip")
@@ -29,16 +36,35 @@ public class Trip implements Serializable {
 	@JoinColumn(name = "buses_id", nullable = false)
 	private Buses buses;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "driver_primary", nullable = false)
-	private Driver driverPrimary;
-
-	@ManyToOne
-	@JoinColumn(name = "driver_foreign", nullable = false)
-	private Driver driverForeign;
 
 	@Column(name = "guest_number")
 	private Integer guestNumber;
+	
+	@Column(name = "date", columnDefinition = "DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
+	
+	@Column(name = "fare")
+	private Integer fare;
+	
+	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<DriverTrip> driverTrip = new ArrayList<>();
+
+	public List<DriverTrip> getDriverTrip() {
+		return driverTrip;
+	}
+
+	public void setDriverTrip(List<DriverTrip> driverTrip) {
+		this.driverTrip = driverTrip;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public Integer getId() {
 		return id;
@@ -64,22 +90,6 @@ public class Trip implements Serializable {
 		this.buses = buses;
 	}
 
-	public Driver getDriverPrimary() {
-		return driverPrimary;
-	}
-
-	public void setDriverPrimary(Driver driverPrimary) {
-		this.driverPrimary = driverPrimary;
-	}
-
-	public Driver getDriverForeign() {
-		return driverForeign;
-	}
-
-	public void setDriverForeign(Driver driverForeign) {
-		this.driverForeign = driverForeign;
-	}
-
 	public Integer getGuestNumber() {
 		return guestNumber;
 	}
@@ -95,7 +105,4 @@ public class Trip implements Serializable {
 	public void setFare(Integer fare) {
 		this.fare = fare;
 	}
-
-	@Column(name = "fare")
-	private Integer fare;
 }

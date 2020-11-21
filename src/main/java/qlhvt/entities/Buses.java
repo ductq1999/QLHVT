@@ -28,6 +28,15 @@ public class Buses implements Serializable {
 
 	@Column(name = "last", nullable = false)
 	private String last;
+	
+	@Column(name = "length", nullable = false)
+	private String length;
+
+	@Column(name = "complexity", nullable = false)
+	private Integer complexity;
+	
+	@OneToMany(mappedBy = "buses", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Trip> trip = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -69,11 +78,6 @@ public class Buses implements Serializable {
 		this.complexity = complexity;
 	}
 
-	@Column(name = "length", nullable = false)
-	private String length;
-
-	@Column(name = "complexity", nullable = false)
-	private Integer complexity;
 
 	public List<Trip> getTrip() {
 		return trip;
@@ -82,7 +86,4 @@ public class Buses implements Serializable {
 	public void setTrip(List<Trip> trip) {
 		this.trip = trip;
 	}
-
-	@OneToMany(mappedBy = "buses", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Trip> trip = new ArrayList<>();
 }

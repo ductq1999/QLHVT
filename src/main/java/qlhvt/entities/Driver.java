@@ -44,27 +44,19 @@ public class Driver implements Serializable {
 	@Column(name = "date_of_birth", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOfBirth;
+	
+	@Column(name = "seniority", nullable = false)
+	private String seniority;
+	
+	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<DriverTrip> driverTrip = new ArrayList<>();
 
-	@OneToMany(mappedBy = "driverForeign", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Trip> tripForDF = new ArrayList<>();
-
-	@OneToMany(mappedBy = "driverPrimary", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Trip> tripForDP = new ArrayList<>();
-
-	public List<Trip> getTripForDF() {
-		return tripForDF;
+	public List<DriverTrip> getDriverTrip() {
+		return driverTrip;
 	}
 
-	public void setTripForDF(List<Trip> tripForDF) {
-		this.tripForDF = tripForDF;
-	}
-
-	public List<Trip> getTripForDP() {
-		return tripForDP;
-	}
-
-	public void setTripForDP(List<Trip> tripForDP) {
-		this.tripForDP = tripForDP;
+	public void setDriverTrip(List<DriverTrip> driverTrip) {
+		this.driverTrip = driverTrip;
 	}
 
 	public String getIdNumber() {
@@ -74,9 +66,6 @@ public class Driver implements Serializable {
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
-
-	@Column(name = "seniority", nullable = false)
-	private String seniority;
 
 	public Integer getId() {
 		return id;

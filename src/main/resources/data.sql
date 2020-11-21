@@ -2,6 +2,7 @@ create database qlhvt;
 use qlhvt;
  CREATE TABLE Driver (
 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`id_number` VARCHAR(30) NOT NULL,
 `name` VARCHAR(30) NOT NULL,
 `license_number` VARCHAR(30) NOT NULL,
 `license_type` VARCHAR(30) NOT NULL,
@@ -15,28 +16,34 @@ CREATE TABLE Coach (
 `color` VARCHAR(30) NOT NULL,
 `manufacturer` VARCHAR(30) NOT NULL,
 `car_type` VARCHAR(30) NOT NULL,
+`model` VARCHAR(30) NOT NULL,
 `chair` INT(6) NOT NULL,
 `year_used` INT(6) NOT NULL,
 `last_maintenance` DATETIME
 );
--- CREATE TABLE  Buses (
--- `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
--- `first` VARCHAR(30) NOT NULL,
--- `last` VARCHAR(30) NOT NULL,
--- `length` VARCHAR(30) NOT NULL,
--- `complexity` INT(6) NOT NULL -- 1 2 3
--- );
+CREATE TABLE  Buses (
+`id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`first` VARCHAR(30) NOT NULL,
+`last` VARCHAR(30) NOT NULL,
+`length` VARCHAR(30) NOT NULL,
+`complexity` INT(6) NOT NULL -- 1 2 3
+);
 
--- CREATE TABLE  Trip (
--- `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
--- `code` VARCHAR(30) NOT NULL,
--- `buses_id` INT(6) UNSIGNED,
--- `driver_primary` INT(6) UNSIGNED,
--- `driver_foreign` INT(6) UNSIGNED,
--- `guest_number` VARCHAR(30) NOT NULL,
--- `fare` VARCHAR(30) NOT NULL,
--- FOREIGN KEY (buses_id) REFERENCES Buses(id),
--- FOREIGN KEY (driver_primary) REFERENCES Driver(id),
--- FOREIGN KEY (driver_foreign) REFERENCES Driver(id)
--- );
--- drop database qlhvt;
+CREATE TABLE  Trip (
+`id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`code` VARCHAR(30) NOT NULL,
+`buses_id` INT(6) UNSIGNED NOT NULL,
+`guest_number` INT(6) NOT NULL,
+`fare` INT(6) NOT NULL,
+`date` DATETIME,
+FOREIGN KEY (buses_id) REFERENCES Buses(id)
+);
+
+CREATE TABLE  Driver_Trip (
+`id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`driver_id` INT(6) UNSIGNED NOT NULL,
+`trip_id` INT(6) UNSIGNED NOT NULL,
+`driver_type` INT(6) NOT NULL, --  1: phu xe, 2: lai xe
+FOREIGN KEY (driver_id) REFERENCES Driver(id),
+FOREIGN KEY (trip_id) REFERENCES Trip(id)
+);
