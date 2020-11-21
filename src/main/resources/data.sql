@@ -9,16 +9,16 @@ use qlhvt;
 `date_of_birth` DATETIME,
 `seniority` VARCHAR(30) NOT NULL
 );
--- CREATE TABLE Coach (
--- `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
--- `licensePlate` VARCHAR(30) NOT NULL,
--- `color` VARCHAR(30) NOT NULL,
--- `manufacturer` VARCHAR(30) NOT NULL,
--- `car_type` VARCHAR(30) NOT NULL,
--- `chair` VARCHAR(30) NOT NULL,
--- `year` VARCHAR(30) NOT NULL,
--- `last_maintenance` TIMESTAMP
--- );
+CREATE TABLE Coach (
+`id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`license_plate` VARCHAR(30) NOT NULL,
+`color` VARCHAR(30) NOT NULL,
+`manufacturer` VARCHAR(30) NOT NULL,
+`car_type` VARCHAR(30) NOT NULL,
+`chair` INT(6) NOT NULL,
+`year_used` INT(6) NOT NULL,
+`last_maintenance` DATETIME
+);
 -- CREATE TABLE  Buses (
 -- `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 -- `first` VARCHAR(30) NOT NULL,

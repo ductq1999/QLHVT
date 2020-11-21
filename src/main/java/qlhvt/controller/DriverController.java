@@ -72,13 +72,13 @@ public class DriverController {
 	}
 
 	@DeleteMapping("deleteById/{id}")
-	public ResponseEntity<Void> deleteUserById(@PathVariable("id") Integer id) {
+	public ResponseEntity<ApiResponse> deleteUserById(@PathVariable("id") Integer id) {
 		ApiResponse object = new ApiResponse();
 		driverService.deleteDriverById(id);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 	@GetMapping("getDriverByCondition")
 	public ResponseEntity<ApiResponse> SearchDriverByCondition(
