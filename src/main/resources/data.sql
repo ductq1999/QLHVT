@@ -6,7 +6,7 @@ use qlhvt;
 `license_number` VARCHAR(30) NOT NULL,
 `license_type` VARCHAR(30) NOT NULL,
 `address` VARCHAR(30) NOT NULL,
-`date_of_birth` timestamp,
+`date_of_birth` DATETIME,
 `seniority` VARCHAR(30) NOT NULL
 );
 -- CREATE TABLE Coach (
