@@ -80,12 +80,13 @@ public class DriverController {
 		object.setStatus(true);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
+
 	@GetMapping("getDriverByCondition")
 	public ResponseEntity<ApiResponse> SearchDriverByCondition(
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "idNumber", required = false) String idNumber,
 			@RequestParam(value = "licenseType", required = false) String licenseType,
-			@RequestParam(value = "address", required = false) String address){
+			@RequestParam(value = "address", required = false) String address) {
 		ApiResponse object = new ApiResponse();
 		List<Driver> list = driverService.searchDriverByCondition(name, idNumber, licenseType, address);
 		object.setCode(200);

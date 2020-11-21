@@ -18,12 +18,12 @@ import qlhvt.dao.DriverDao;
 import qlhvt.entities.Driver;
 
 @Transactional
-@Repository(value="driverDao")
-public class DriverDaoImpl implements DriverDao{
-	
+@Repository(value = "driverDao")
+public class DriverDaoImpl implements DriverDao {
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Driver> getAllDriver() {
@@ -66,21 +66,21 @@ public class DriverDaoImpl implements DriverDao{
 		CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
 		Root<Driver> from = criteriaQuery.from(Driver.class);
 		CriteriaQuery<Object> select = criteriaQuery.select(from);
-		
+
 		List<Predicate> predicates = new ArrayList<Predicate>();
-		if(name != null && !name.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("name"),"%"+name+"%"));
+		if (name != null && !name.equals("")) {
+			predicates.add(criteriaBuilder.like(from.get("name"), "%" + name + "%"));
 		}
-		if(idNumber != null && !idNumber.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("idNumber"),"%"+idNumber+"%"));
+		if (idNumber != null && !idNumber.equals("")) {
+			predicates.add(criteriaBuilder.like(from.get("idNumber"), "%" + idNumber + "%"));
 		}
-		if(licenseType != null && !licenseType.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("licenseType"),"%"+licenseType+"%"));
+		if (licenseType != null && !licenseType.equals("")) {
+			predicates.add(criteriaBuilder.like(from.get("licenseType"), "%" + licenseType + "%"));
 		}
-		if(address != null && !address.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("address"),"%"+address+"%"));
+		if (address != null && !address.equals("")) {
+			predicates.add(criteriaBuilder.like(from.get("address"), "%" + address + "%"));
 		}
-		select.select(from).where(predicates.toArray(new Predicate[]{}));
+		select.select(from).where(predicates.toArray(new Predicate[] {}));
 		Query query = entityManager.createQuery(criteriaQuery);
 		@SuppressWarnings("unchecked")
 		List<Driver> lstResult = query.getResultList();

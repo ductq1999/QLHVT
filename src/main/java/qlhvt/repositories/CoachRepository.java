@@ -3,9 +3,9 @@ package qlhvt.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import qlhvt.entities.Driver;
+import qlhvt.entities.Coach;
 
 @Repository
-public interface DriverRepository extends JpaRepository<Driver, Integer> {
+public interface CoachRepository extends JpaRepository<Coach, Integer> {
 
 }

@@ -13,36 +13,36 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "Coach")
-public class Coach implements Serializable{
+@Table(name = "coach")
+public class Coach implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "license_plate", nullable = false)
 	private String licensePlate;
 
 	@Column(name = "color", nullable = false)
 	private String color;
-	
+
 	@Column(name = "manufacturer", nullable = false)
 	private String manufacturer;
-	
+
 	@Column(name = "car_type", nullable = false)
 	private String carType;
-	
+
 	@Column(name = "model", nullable = false)
 	private String model;
-	
+
 	@Column(name = "chair", nullable = false)
 	private Integer chair;
-	
+
 	@Column(name = "year_used", nullable = false)
 	private Integer yearUsed;
-	
+
 	@Column(name = "last_maintenance", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastMaintenance;
@@ -118,6 +118,5 @@ public class Coach implements Serializable{
 	public void setLastMaintenance(Date lastMaintenance) {
 		this.lastMaintenance = lastMaintenance;
 	}
-	
-	
+
 }
