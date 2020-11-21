@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import qlhvt.entities.Driver;
@@ -39,26 +40,59 @@ public class DriverController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Driver> getDriverById(@PathVariable("id") Integer id) {
+	public ResponseEntity<ApiResponse> getDriverById(@PathVariable("id") Integer id) {
+		ApiResponse object = new ApiResponse();
 		Driver driver = driverService.getDriverById(id);
-		return new ResponseEntity<Driver>(driver, HttpStatus.OK);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(driver);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Driver> addDriver(@RequestBody Driver driver) {
+	public ResponseEntity<ApiResponse> addDriver(@RequestBody Driver driver) {
+		ApiResponse object = new ApiResponse();
 		driverService.addDriver(driver);
-		return new ResponseEntity<Driver>(driver, HttpStatus.OK);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(driver);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@PutMapping("update")
-	public ResponseEntity<Driver> updateDriver(@RequestBody Driver driver) {
+	public ResponseEntity<ApiResponse> updateDriver(@RequestBody Driver driver) {
+		ApiResponse object = new ApiResponse();
 		driverService.updateDriver(driver);
-		return new ResponseEntity<Driver>(driver, HttpStatus.OK);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(driver);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@DeleteMapping("deleteById/{id}")
 	public ResponseEntity<Void> deleteUserById(@PathVariable("id") Integer id) {
+		ApiResponse object = new ApiResponse();
 		driverService.deleteDriverById(id);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
 		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	@GetMapping("getDriverByCondition")
+	public ResponseEntity<ApiResponse> SearchDriverByCondition(
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "idNumber", required = false) String idNumber,
+			@RequestParam(value = "licenseType", required = false) String licenseType,
+			@RequestParam(value = "address", required = false) String address){
+		ApiResponse object = new ApiResponse();
+		List<Driver> list = driverService.searchDriverByCondition(name, idNumber, licenseType, address);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(list);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 }

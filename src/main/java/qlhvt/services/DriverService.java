@@ -10,4 +10,5 @@ public interface DriverService {
 	void addDriver(Driver driver);
 	void updateDriver(Driver driver);
 	void deleteDriverById(Integer id);
+	List<Driver> searchDriverByCondition(String name, String idNumber, String licenseType, String address);
 }

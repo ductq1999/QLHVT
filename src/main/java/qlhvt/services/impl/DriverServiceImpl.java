@@ -45,4 +45,10 @@ public class DriverServiceImpl implements DriverService{
 		driverDao.deleteDriverById(id);
 	}
 
+	@Override
+	public List<Driver> searchDriverByCondition(String name, String idNumber, String licenseType, String address) {
+		// TODO Auto-generated method stub
+		return driverDao.searchDriverByCondition(name, idNumber, licenseType, address);
+	}
+
 }

@@ -22,6 +22,9 @@ public class Driver implements Serializable{
 	@Column(name = "id")
 	private Integer id;
 	
+	@Column(name = "id_number", nullable = false)
+	private String idNumber;
+
 	@Column(name = "name", nullable = false)
 	private String name;
 	
@@ -37,6 +40,14 @@ public class Driver implements Serializable{
 	@Column(name = "date_of_birth", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOfBirth;
+	
+	public String getIdNumber() {
+		return idNumber;
+	}
+
+	public void setIdNumber(String idNumber) {
+		this.idNumber = idNumber;
+	}
 	
 	@Column(name = "seniority", nullable = false)
 	private String seniority;
