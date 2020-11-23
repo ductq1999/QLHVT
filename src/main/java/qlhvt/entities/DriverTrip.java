@@ -23,7 +23,7 @@ public class DriverTrip implements Serializable{
 	private Integer id;
 	
 	@Column(name = "driver_type")
-	private String driverType;
+	private Integer driverType;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "trip_id", nullable = false)
@@ -41,11 +41,11 @@ public class DriverTrip implements Serializable{
 		this.id = id;
 	}
 
-	public String getDriverType() {
+	public Integer getDriverType() {
 		return driverType;
 	}
 
-	public void setDriverType(String driverType) {
+	public void setDriverType(Integer driverType) {
 		this.driverType = driverType;
 	}
 

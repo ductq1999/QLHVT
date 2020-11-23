@@ -42,6 +42,9 @@ public class Coach implements Serializable {
 
 	@Column(name = "year_used", nullable = false)
 	private Integer yearUsed;
+	
+	@Column(name = "status", nullable = false)
+	private Integer status;
 
 	@Column(name = "last_maintenance", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -119,4 +122,12 @@ public class Coach implements Serializable {
 		this.lastMaintenance = lastMaintenance;
 	}
 
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
 }

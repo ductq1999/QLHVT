@@ -15,5 +15,8 @@ public interface DriverDao {
 
 	void deleteDriverById(Integer id);
 
-	List<Driver> searchDriverByCondition(String name, String idNumber, String licenseType, String address);
+	List<Driver> searchDriverByCondition(int page, int pageSize, String columnSortName, Boolean asc, String name,
+			String idNumber, String licenseType, String address, Integer status);
+	
+	int getRowCount(String name, String idNumber, String licenseType, String address, Integer status);
 }

@@ -16,21 +16,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import qlhvt.entities.Driver;
+import qlhvt.entities.DriverTrip;
 import qlhvt.helper.ApiResponse;
-import qlhvt.services.DriverService;
+import qlhvt.services.DriverTripService;
 
 @Controller
-@RequestMapping("driver")
+@RequestMapping("driverTrip")
 @CrossOrigin(origins = { "*" })
-public class DriverController {
+public class DriverTripDaoController {
 	@Autowired
-	private DriverService driverService;
+	private DriverTripService driverTripService;
 
 	@GetMapping("getAll")
-	public ResponseEntity<ApiResponse> getAllDriver() {
+	public ResponseEntity<ApiResponse> getAllDriverTrip() {
 		ApiResponse object = new ApiResponse();
-		List<Driver> list = driverService.getAllDriver();
+		List<DriverTrip> list = driverTripService.getAllDriverTrip();
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
@@ -39,62 +39,58 @@ public class DriverController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ApiResponse> getDriverById(@PathVariable("id") Integer id) {
+	public ResponseEntity<ApiResponse> getDriverTripById(@PathVariable("id") Integer id) {
 		ApiResponse object = new ApiResponse();
-		Driver driver = driverService.getDriverById(id);
+		DriverTrip driverTrip = driverTripService.getDriverTripById(id);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
-		object.setData(driver);
+		object.setData(driverTrip);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<ApiResponse> addDriver(@RequestBody Driver driver) {
+	public ResponseEntity<ApiResponse> addDriverTrip(@RequestBody DriverTrip driverTrip) {
 		ApiResponse object = new ApiResponse();
-		driverService.addDriver(driver);
+		driverTripService.addDriverTrip(driverTrip);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
-		object.setData(driver);
+		object.setData(driverTrip);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@PutMapping("update")
-	public ResponseEntity<ApiResponse> updateDriver(@RequestBody Driver driver) {
+	public ResponseEntity<ApiResponse> updateDriverTrip(@RequestBody DriverTrip driverTrip) {
 		ApiResponse object = new ApiResponse();
-		driverService.updateDriver(driver);
+		driverTripService.updateDriverTrip(driverTrip);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
-		object.setData(driver);
+		object.setData(driverTrip);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@DeleteMapping("deleteById/{id}")
-	public ResponseEntity<ApiResponse> deleteDriverById(@PathVariable("id") Integer id) {
+	public ResponseEntity<ApiResponse> deleteDriverTripById(@PathVariable("id") Integer id) {
 		ApiResponse object = new ApiResponse();
-		driverService.deleteDriverById(id);
+		driverTripService.deleteDriverTripById(id);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
-	@GetMapping("getDriverByCondition")
+	@GetMapping("getDriverTripByCondition")
 	public ResponseEntity<ApiResponse> SearchDriverByCondition(@RequestParam(value = "page", required = true) int page,
 			@RequestParam(value = "pageSize", required = true) int pageSize,
 			@RequestParam(value = "columnSortName", required = false) String columnSortName,
 			@RequestParam(value = "asc", required = false) Boolean asc,
-			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "idNumber", required = false) String idNumber,
-			@RequestParam(value = "licenseType", required = false) String licenseType,
-			@RequestParam(value = "address", required = false) String address,
-			@RequestParam(value = "status", required = false) Integer status) {
+			@RequestParam(value = "driverType", required = false) Integer driverType) {
 		ApiResponse object = new ApiResponse();
-		List<Driver> list = driverService.searchDriverByCondition(page, pageSize, columnSortName, asc, name, idNumber,
-				licenseType, address, status);
-		int rowCount = driverService.getRowCount(name, idNumber, licenseType, address, status);
+		List<DriverTrip> list = driverTripService.searchDriverTripByCondition(page, pageSize, columnSortName, asc,
+				driverType);
+		int rowCount = driverTripService.getRowCount(driverType);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
@@ -104,4 +100,5 @@ public class DriverController {
 		object.setTotalRow(rowCount);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
+
 }

@@ -14,74 +14,66 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import qlhvt.dao.DriverDao;
-import qlhvt.entities.Driver;
+import qlhvt.dao.TripDao;
+import qlhvt.entities.Trip;
 
 @Transactional
-@Repository(value = "driverDao")
-public class DriverDaoImpl implements DriverDao {
+@Repository(value = "tripDao")
+public class TripDaoImpl implements TripDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Driver> getAllDriver() {
+	public List<Trip> getAllTrip() {
 		// TODO Auto-generated method stub
-		String hql = "FROM Driver as d";
-		return (List<Driver>) entityManager.createQuery(hql).getResultList();
+		String hql = "FROM Trip as t";
+		return (List<Trip>) entityManager.createQuery(hql).getResultList();
 	}
 
 	@Override
-	public Driver getDriverById(Integer id) {
+	public Trip getTripById(Integer id) {
 		// TODO Auto-generated method stub
-		return entityManager.find(Driver.class, id);
+		return entityManager.find(Trip.class, id);
 	}
 
 	@Override
-	public void addDriver(Driver driver) {
+	public void addTrip(Trip trip) {
 		// TODO Auto-generated method stub
-		entityManager.persist(driver);
+		entityManager.persist(trip);
+
 	}
 
 	@Override
-	public void updateDriver(Driver driver) {
+	public void updateTrip(Trip trip) {
 		// TODO Auto-generated method stub
-		Driver mDriver = entityManager.find(Driver.class, driver.getId());
-		driver.setId(mDriver.getId());
-		entityManager.merge(driver);
+		Trip mTrip = entityManager.find(Trip.class, trip.getId());
+		trip.setId(mTrip.getId());
+		entityManager.merge(trip);
 	}
 
 	@Override
-	public void deleteDriverById(Integer id) {
+	public void deleteTripById(Integer id) {
 		// TODO Auto-generated method stub
-		Driver driver = entityManager.find(Driver.class, id);
-		driver.setStatus(0);
-		entityManager.merge(driver);
+		Trip trip = entityManager.find(Trip.class, id);
+		trip.setStatus(0);
+		entityManager.merge(trip);
 	}
 
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
-	public List<Driver> searchDriverByCondition(int page, int pageSize, String columnSortName, Boolean asc, String name,
-			String idNumber, String licenseType, String address, Integer status) {
+	public List<Trip> searchTripByCondition(int page, int pageSize, String columnSortName, Boolean asc, String code,
+			Integer status) {
 		// TODO Auto-generated method stub
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
-		Root<Driver> from = criteriaQuery.from(Driver.class);
+		Root<Trip> from = criteriaQuery.from(Trip.class);
 		CriteriaQuery<Object> select = criteriaQuery.select(from);
 
 		List<Predicate> predicates = new ArrayList<Predicate>();
-		if (name != null && !name.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("name"), "%" + name + "%"));
-		}
-		if (idNumber != null && !idNumber.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("idNumber"), "%" + idNumber + "%"));
-		}
-		if (licenseType != null && !licenseType.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("licenseType"), "%" + licenseType + "%"));
-		}
-		if (address != null && !address.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("address"), "%" + address + "%"));
+		if (code != null && !code.equals("")) {
+			predicates.add(criteriaBuilder.like(from.get("code"), "%" + code + "%"));
 		}
 		if (status != null && !status.equals("")) {
 			predicates.add(criteriaBuilder.equal(from.get("status"), status));
@@ -101,42 +93,30 @@ public class DriverDaoImpl implements DriverDao {
 			query.setMaxResults(pageSize);
 		}
 		@SuppressWarnings("unchecked")
-		List<Driver> lstResult = query.getResultList();
+		List<Trip> lstResult = query.getResultList();
 		return lstResult;
 	}
 
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
-	public int getRowCount(String name, String idNumber, String licenseType, String address, Integer status) {
+	public int getRowCount(String code, Integer status) {
 		// TODO Auto-generated method stub
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
-		Root<Driver> from = criteriaQuery.from(Driver.class);
+		Root<Trip> from = criteriaQuery.from(Trip.class);
 		CriteriaQuery<Object> select = criteriaQuery.select(from);
 
 		List<Predicate> predicates = new ArrayList<Predicate>();
-		if (name != null && !name.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("name"), "%" + name + "%"));
+		if (code != null && !code.equals("")) {
+			predicates.add(criteriaBuilder.like(from.get("code"), "%" + code + "%"));
 		}
-		if (idNumber != null && !idNumber.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("idNumber"), "%" + idNumber + "%"));
-		}
-		if (licenseType != null && !licenseType.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("licenseType"), "%" + licenseType + "%"));
-		}
-		if (address != null && !address.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("address"), "%" + address + "%"));
-		}
-		;
 		if (status != null && !status.equals("")) {
 			predicates.add(criteriaBuilder.equal(from.get("status"), status));
 		}
-
 		select.select(from).where(predicates.toArray(new Predicate[] {}));
 		Query query = entityManager.createQuery(criteriaQuery);
-
 		@SuppressWarnings("unchecked")
-		List<Driver> lstResult = query.getResultList();
+		List<Trip> lstResult = query.getResultList();
 		return lstResult.size();
 	}
 

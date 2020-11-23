@@ -10,8 +10,8 @@ import qlhvt.entities.Driver;
 import qlhvt.services.DriverService;
 
 @Service(value = "driverService")
-public class DriverServiceImpl implements DriverService{
-	
+public class DriverServiceImpl implements DriverService {
+
 	@Autowired
 	private DriverDao driverDao;
 
@@ -46,9 +46,17 @@ public class DriverServiceImpl implements DriverService{
 	}
 
 	@Override
-	public List<Driver> searchDriverByCondition(String name, String idNumber, String licenseType, String address) {
+	public List<Driver> searchDriverByCondition(int page, int pageSize, String columnSortName, Boolean asc, String name,
+			String idNumber, String licenseType, String address, Integer status) {
 		// TODO Auto-generated method stub
-		return driverDao.searchDriverByCondition(name, idNumber, licenseType, address);
+		return driverDao.searchDriverByCondition(page, pageSize, columnSortName, asc, name, idNumber, licenseType,
+				address, status);
+	}
+
+	@Override
+	public int getRowCount(String name, String idNumber, String licenseType, String address, Integer status) {
+		// TODO Auto-generated method stub
+		return driverDao.getRowCount(name, idNumber, licenseType, address, status);
 	}
 
 }

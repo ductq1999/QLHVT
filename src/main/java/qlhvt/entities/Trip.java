@@ -32,31 +32,33 @@ public class Trip implements Serializable {
 	@Column(name = "code")
 	private String code;
 
+	@Column(name = "status", nullable = false)
+	private Integer status;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "buses_id", nullable = false)
 	private Buses buses;
 
-
 	@Column(name = "guest_number")
 	private Integer guestNumber;
-	
+
 	@Column(name = "date", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
-	
+
 	@Column(name = "fare")
 	private Integer fare;
-	
-	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<DriverTrip> driverTrip = new ArrayList<>();
 
-	public List<DriverTrip> getDriverTrip() {
-		return driverTrip;
-	}
+//	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private List<DriverTrip> driverTrip = new ArrayList<>();
 
-	public void setDriverTrip(List<DriverTrip> driverTrip) {
-		this.driverTrip = driverTrip;
-	}
+//	public List<DriverTrip> getDriverTrip() {
+//		return driverTrip;
+//	}
+//
+//	public void setDriverTrip(List<DriverTrip> driverTrip) {
+//		this.driverTrip = driverTrip;
+//	}
 
 	public Date getDate() {
 		return date;
@@ -105,4 +107,13 @@ public class Trip implements Serializable {
 	public void setFare(Integer fare) {
 		this.fare = fare;
 	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 }

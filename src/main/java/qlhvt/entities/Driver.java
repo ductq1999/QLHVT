@@ -48,16 +48,19 @@ public class Driver implements Serializable {
 	@Column(name = "seniority", nullable = false)
 	private String seniority;
 	
-	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<DriverTrip> driverTrip = new ArrayList<>();
-
-	public List<DriverTrip> getDriverTrip() {
-		return driverTrip;
-	}
-
-	public void setDriverTrip(List<DriverTrip> driverTrip) {
-		this.driverTrip = driverTrip;
-	}
+	@Column(name = "status", nullable = false)
+	private Integer status;
+	
+//	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private List<DriverTrip> driverTrip = new ArrayList<>();
+//
+//	public List<DriverTrip> getDriverTrip() {
+//		return driverTrip;
+//	}
+//
+//	public void setDriverTrip(List<DriverTrip> driverTrip) {
+//		this.driverTrip = driverTrip;
+//	}
 
 	public String getIdNumber() {
 		return idNumber;
@@ -122,5 +125,15 @@ public class Driver implements Serializable {
 	public void setSeniority(String seniority) {
 		this.seniority = seniority;
 	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
+	
 
 }

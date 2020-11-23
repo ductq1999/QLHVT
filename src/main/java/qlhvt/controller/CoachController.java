@@ -16,21 +16,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import qlhvt.entities.Driver;
+import qlhvt.entities.Coach;
 import qlhvt.helper.ApiResponse;
-import qlhvt.services.DriverService;
+import qlhvt.services.CoachService;
 
 @Controller
-@RequestMapping("driver")
+@RequestMapping("coach")
 @CrossOrigin(origins = { "*" })
-public class DriverController {
+public class CoachController {
+
 	@Autowired
-	private DriverService driverService;
+	private CoachService coachService;
 
 	@GetMapping("getAll")
-	public ResponseEntity<ApiResponse> getAllDriver() {
+	public ResponseEntity<ApiResponse> getAllCoach() {
 		ApiResponse object = new ApiResponse();
-		List<Driver> list = driverService.getAllDriver();
+		List<Coach> list = coachService.getAllCoach();
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
@@ -39,62 +40,64 @@ public class DriverController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ApiResponse> getDriverById(@PathVariable("id") Integer id) {
+	public ResponseEntity<ApiResponse> getCoachById(@PathVariable("id") Integer id) {
 		ApiResponse object = new ApiResponse();
-		Driver driver = driverService.getDriverById(id);
+		Coach coach = coachService.getCoachById(id);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
-		object.setData(driver);
+		object.setData(coach);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<ApiResponse> addDriver(@RequestBody Driver driver) {
+	public ResponseEntity<ApiResponse> addCoach(@RequestBody Coach coach) {
 		ApiResponse object = new ApiResponse();
-		driverService.addDriver(driver);
+		coachService.addCoach(coach);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
-		object.setData(driver);
+		object.setData(coach);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@PutMapping("update")
-	public ResponseEntity<ApiResponse> updateDriver(@RequestBody Driver driver) {
+	public ResponseEntity<ApiResponse> updateCoach(@RequestBody Coach coach) {
 		ApiResponse object = new ApiResponse();
-		driverService.updateDriver(driver);
+		coachService.updateCoach(coach);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
-		object.setData(driver);
+		object.setData(coach);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
 	@DeleteMapping("deleteById/{id}")
-	public ResponseEntity<ApiResponse> deleteDriverById(@PathVariable("id") Integer id) {
+	public ResponseEntity<ApiResponse> deleteCoachById(@PathVariable("id") Integer id) {
 		ApiResponse object = new ApiResponse();
-		driverService.deleteDriverById(id);
+		coachService.deleteCoachById(id);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
-	@GetMapping("getDriverByCondition")
+	@GetMapping("getCoachByCondition")
 	public ResponseEntity<ApiResponse> SearchDriverByCondition(@RequestParam(value = "page", required = true) int page,
 			@RequestParam(value = "pageSize", required = true) int pageSize,
 			@RequestParam(value = "columnSortName", required = false) String columnSortName,
 			@RequestParam(value = "asc", required = false) Boolean asc,
-			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "idNumber", required = false) String idNumber,
-			@RequestParam(value = "licenseType", required = false) String licenseType,
-			@RequestParam(value = "address", required = false) String address,
+			@RequestParam(value = "licensePlate", required = false) String licensePlate,
+			@RequestParam(value = "color", required = false) String color,
+			@RequestParam(value = "manufacturer", required = false) String manufacturer,
+			@RequestParam(value = "carType", required = false) String carType,
+			@RequestParam(value = "model", required = false) String model,
+			@RequestParam(value = "char", required = false) Integer chair,
 			@RequestParam(value = "status", required = false) Integer status) {
 		ApiResponse object = new ApiResponse();
-		List<Driver> list = driverService.searchDriverByCondition(page, pageSize, columnSortName, asc, name, idNumber,
-				licenseType, address, status);
-		int rowCount = driverService.getRowCount(name, idNumber, licenseType, address, status);
+		List<Coach> list = coachService.searchCoachByCondition(page, pageSize, columnSortName, asc, licensePlate, color,
+				manufacturer, carType, model, chair, status);
+		int rowCount = coachService.getRowCount(licensePlate, color, manufacturer, carType, model, chair, status);
 		object.setCode(200);
 		object.setErrors(null);
 		object.setStatus(true);
