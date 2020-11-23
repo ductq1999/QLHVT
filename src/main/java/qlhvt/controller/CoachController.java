@@ -92,7 +92,7 @@ public class CoachController {
 			@RequestParam(value = "manufacturer", required = false) String manufacturer,
 			@RequestParam(value = "carType", required = false) String carType,
 			@RequestParam(value = "model", required = false) String model,
-			@RequestParam(value = "char", required = false) Integer chair,
+			@RequestParam(value = "chair", required = false) Integer chair,
 			@RequestParam(value = "status", required = false) Integer status) {
 		ApiResponse object = new ApiResponse();
 		List<Coach> list = coachService.searchCoachByCondition(page, pageSize, columnSortName, asc, licensePlate, color,
