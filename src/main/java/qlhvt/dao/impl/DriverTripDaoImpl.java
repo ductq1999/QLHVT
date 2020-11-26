@@ -112,4 +112,12 @@ public class DriverTripDaoImpl implements DriverTripDao {
 		return lstResult.size();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DriverTrip> getDriverTripByDriverId(Integer id) {
+		// TODO Auto-generated method stub
+		String hql = "FROM DriverTrip as d WHERE driver.id = " + id;
+		return (List<DriverTrip>) entityManager.createQuery(hql).getResultList();
+	}
+
 }

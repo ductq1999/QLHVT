@@ -23,7 +23,7 @@ import qlhvt.services.DriverTripService;
 @Controller
 @RequestMapping("driverTrip")
 @CrossOrigin(origins = { "*" })
-public class DriverTripDaoController {
+public class DriverTripController {
 	@Autowired
 	private DriverTripService driverTripService;
 
@@ -98,6 +98,17 @@ public class DriverTripDaoController {
 		object.setPage(page);
 		object.setPageSize(pageSize);
 		object.setTotalRow(rowCount);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+	}
+	
+	@GetMapping("getDriverTripByDriverId/{id}")
+	public ResponseEntity<ApiResponse> getDriverTripByDriverId(@PathVariable("id") Integer id) {
+		ApiResponse object = new ApiResponse();
+		List<DriverTrip> list = driverTripService.getDriverTripByDriverId(id);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(list);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 

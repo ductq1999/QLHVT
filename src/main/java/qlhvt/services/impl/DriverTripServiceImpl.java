@@ -59,4 +59,10 @@ public class DriverTripServiceImpl implements DriverTripService {
 		return driverTripDao.getRowCount(driverType);
 	}
 
+	@Override
+	public List<DriverTrip> getDriverTripByDriverId(Integer id) {
+		// TODO Auto-generated method stub
+		return driverTripDao.getDriverTripByDriverId(id);
+	}
+
 }

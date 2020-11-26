@@ -19,4 +19,6 @@ public interface DriverTripDao {
 			Integer driverType);
 
 	int getRowCount(Integer driverType);
+	
+	List<DriverTrip> getDriverTripByDriverId(Integer id);
 }
