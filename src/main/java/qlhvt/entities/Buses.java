@@ -1,16 +1,12 @@
 package qlhvt.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,9 +33,6 @@ public class Buses implements Serializable {
 	
 	@Column(name = "status", nullable = false)
 	private Integer status;
-	
-//	@OneToMany(mappedBy = "buses", cascade = CascadeType.ALL, orphanRemoval = true)
-//	private List<Trip> trip = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -80,15 +73,6 @@ public class Buses implements Serializable {
 	public void setComplexity(Integer complexity) {
 		this.complexity = complexity;
 	}
-
-
-//	public List<Trip> getTrip() {
-//		return trip;
-//	}
-//
-//	public void setTrip(List<Trip> trip) {
-//		this.trip = trip;
-//	}
 
 	public Integer getStatus() {
 		return status;

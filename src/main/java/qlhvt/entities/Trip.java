@@ -1,11 +1,8 @@
 package qlhvt.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,6 +34,10 @@ public class Trip implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "buses_id", nullable = false)
 	private Buses buses;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "coach_id", nullable = false)
+	private Coach coach;
 
 	@Column(name = "guest_number")
 	private Integer guestNumber;
@@ -48,17 +48,6 @@ public class Trip implements Serializable {
 
 	@Column(name = "fare")
 	private Integer fare;
-
-//	@OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, orphanRemoval = true)
-//	private List<DriverTrip> driverTrip = new ArrayList<>();
-
-//	public List<DriverTrip> getDriverTrip() {
-//		return driverTrip;
-//	}
-//
-//	public void setDriverTrip(List<DriverTrip> driverTrip) {
-//		this.driverTrip = driverTrip;
-//	}
 
 	public Date getDate() {
 		return date;
@@ -114,6 +103,14 @@ public class Trip implements Serializable {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Coach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(Coach coach) {
+		this.coach = coach;
 	}
 
 }

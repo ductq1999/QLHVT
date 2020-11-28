@@ -14,28 +14,28 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "driver_trip")
-public class DriverTrip implements Serializable{
+public class DriverTrip implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "driver_type")
 	private Integer driverType;
-	
+
 	@Column(name = "salary_trip")
 	private Integer salaryTrip;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "trip_id", nullable = false)
 	private Trip trip;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "driver_id", nullable = false)
 	private Driver driver;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -75,4 +75,5 @@ public class DriverTrip implements Serializable{
 	public void setDriver(Driver driver) {
 		this.driver = driver;
 	}
+
 }

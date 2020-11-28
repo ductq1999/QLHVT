@@ -81,7 +81,7 @@ public class DriverTripController {
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
-	@GetMapping("getDriverTripByCondition")
+	@GetMapping("getByCondition")
 	public ResponseEntity<ApiResponse> SearchDriverByCondition(@RequestParam(value = "page", required = true) int page,
 			@RequestParam(value = "pageSize", required = true) int pageSize,
 			@RequestParam(value = "columnSortName", required = false) String columnSortName,
@@ -101,7 +101,7 @@ public class DriverTripController {
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
-	@GetMapping("getDriverTripByDriverId/{id}")
+	@GetMapping("getByDriverId/{id}")
 	public ResponseEntity<ApiResponse> getDriverTripByDriverId(@PathVariable("id") Integer id) {
 		ApiResponse object = new ApiResponse();
 		List<DriverTrip> list = driverTripService.getDriverTripByDriverId(id);

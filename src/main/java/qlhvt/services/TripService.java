@@ -19,4 +19,8 @@ public interface TripService {
 			Integer status);
 
 	int getRowCount(String code, Integer status);
+
+	List<Trip> getTripByCoachId(Integer id);
+	
+	int getTotalIncome(Integer id);
 }

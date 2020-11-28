@@ -82,7 +82,7 @@ public class TripController {
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 
-	@GetMapping("getTripByCondition")
+	@GetMapping("getByCondition")
 	public ResponseEntity<ApiResponse> SearchTripByCondition(@RequestParam(value = "page", required = true) int page,
 			@RequestParam(value = "pageSize", required = true) int pageSize,
 			@RequestParam(value = "columnSortName", required = false) String columnSortName,
@@ -99,6 +99,28 @@ public class TripController {
 		object.setPage(page);
 		object.setPageSize(pageSize);
 		object.setTotalRow(rowCount);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+	}
+
+	@GetMapping("/getByCoachId/{id}")
+	public ResponseEntity<ApiResponse> getTripByCoachId(@PathVariable("id") Integer id) {
+		ApiResponse object = new ApiResponse();
+		List<Trip> list = tripService.getTripByCoachId(id);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(list);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+	}
+
+	@GetMapping("/getTotalIncome/{id}")
+	public ResponseEntity<ApiResponse> getTotalIncome(@PathVariable("id") Integer id) {
+		ApiResponse object = new ApiResponse();
+		int ti = tripService.getTotalIncome(id);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(ti);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 }

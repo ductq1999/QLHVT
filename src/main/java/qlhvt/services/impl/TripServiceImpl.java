@@ -58,4 +58,16 @@ public class TripServiceImpl implements TripService {
 		return tripDao.getRowCount(code, status);
 	}
 
+	@Override
+	public List<Trip> getTripByCoachId(Integer id) {
+		// TODO Auto-generated method stub
+		return tripDao.getTripByCoachId(id);
+	}
+
+	@Override
+	public int getTotalIncome(Integer id) {
+		// TODO Auto-generated method stub
+		return tripDao.getTotalIncome(id);
+	}
+
 }

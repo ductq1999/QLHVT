@@ -1,17 +1,13 @@
 package qlhvt.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,17 +46,6 @@ public class Driver implements Serializable {
 	
 	@Column(name = "status", nullable = false)
 	private Integer status;
-	
-//	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
-//	private List<DriverTrip> driverTrip = new ArrayList<>();
-//
-//	public List<DriverTrip> getDriverTrip() {
-//		return driverTrip;
-//	}
-//
-//	public void setDriverTrip(List<DriverTrip> driverTrip) {
-//		this.driverTrip = driverTrip;
-//	}
 
 	public String getIdNumber() {
 		return idNumber;
