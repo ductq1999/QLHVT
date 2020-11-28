@@ -59,4 +59,10 @@ public class DriverServiceImpl implements DriverService {
 		return driverDao.getRowCount(name, idNumber, licenseType, address, status);
 	}
 
+	@Override
+	public Boolean isExist(Driver driver) {
+		// TODO Auto-generated method stub
+		return driverDao.isExist(driver);
+	}
+
 }

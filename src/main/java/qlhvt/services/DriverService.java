@@ -8,6 +8,8 @@ public interface DriverService {
 	List<Driver> getAllDriver();
 
 	Driver getDriverById(Integer id);
+	
+	Boolean isExist(Driver driver);
 
 	void addDriver(Driver driver);
 

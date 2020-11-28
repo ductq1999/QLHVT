@@ -28,7 +28,7 @@ public class DriverDaoImpl implements DriverDao {
 	@Override
 	public List<Driver> getAllDriver() {
 		// TODO Auto-generated method stub
-		String hql = "FROM Driver as d";
+		String hql = "FROM Driver as d WHERE d.status = 1";
 		return (List<Driver>) entityManager.createQuery(hql).getResultList();
 	}
 
@@ -138,6 +138,13 @@ public class DriverDaoImpl implements DriverDao {
 		@SuppressWarnings("unchecked")
 		List<Driver> lstResult = query.getResultList();
 		return lstResult.size();
+	}
+
+	@Override
+	public Boolean isExist(Driver driver) {
+		// TODO Auto-generated method stub
+		String hql = "FROM Driver as d WHERE d.status = 1 AND d.idNumber = :idNumber";
+		return entityManager.createQuery(hql).setParameter("idNumber", driver.getIdNumber()).getResultList().size() > 0 ? true : false;
 	}
 
 }

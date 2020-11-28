@@ -25,6 +25,9 @@ public class DriverTrip implements Serializable{
 	@Column(name = "driver_type")
 	private Integer driverType;
 	
+	@Column(name = "salary_trip")
+	private Integer salaryTrip;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "trip_id", nullable = false)
 	private Trip trip;
@@ -47,6 +50,14 @@ public class DriverTrip implements Serializable{
 
 	public void setDriverType(Integer driverType) {
 		this.driverType = driverType;
+	}
+
+	public Integer getSalaryTrip() {
+		return salaryTrip;
+	}
+
+	public void setSalaryTrip(Integer salaryTrip) {
+		this.salaryTrip = salaryTrip;
 	}
 
 	public Trip getTrip() {

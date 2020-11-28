@@ -28,7 +28,7 @@ public class TripDaoImpl implements TripDao {
 	@Override
 	public List<Trip> getAllTrip() {
 		// TODO Auto-generated method stub
-		String hql = "FROM Trip as t";
+		String hql = "FROM Trip as t WHERE t.status = 1";
 		return (List<Trip>) entityManager.createQuery(hql).getResultList();
 	}
 

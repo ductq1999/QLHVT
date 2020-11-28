@@ -28,7 +28,7 @@ public class BusesDaoImpl implements BusesDao {
 	@Override
 	public List<Buses> getAllBuses() {
 		// TODO Auto-generated method stub
-		String hql = "FROM Buses as b";
+		String hql = "FROM Buses as b WHERE b.status = 1";
 		return (List<Buses>) entityManager.createQuery(hql).getResultList();
 	}
 

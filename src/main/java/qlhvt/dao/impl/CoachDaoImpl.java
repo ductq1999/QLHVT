@@ -28,7 +28,7 @@ public class CoachDaoImpl implements CoachDao {
 	@Override
 	public List<Coach> getAllCoach() {
 		// TODO Auto-generated method stub
-		String hql = "FROM Coach as c";
+		String hql = "FROM Coach as c WHERE c.status = 1";
 		return (List<Coach>) entityManager.createQuery(hql).getResultList();
 	}
 

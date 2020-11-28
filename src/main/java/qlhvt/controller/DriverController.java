@@ -51,13 +51,21 @@ public class DriverController {
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addDriver(@RequestBody Driver driver) {
-		ApiResponse object = new ApiResponse();
-		driverService.addDriver(driver);
-		object.setCode(200);
-		object.setErrors(null);
-		object.setStatus(true);
-		object.setData(driver);
-		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		if (driverService.isExist(driver) == false) {
+			ApiResponse object = new ApiResponse();
+			driverService.addDriver(driver);
+			object.setCode(200);
+			object.setErrors(null);
+			object.setStatus(true);
+			object.setData(driver);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		} else {
+			ApiResponse object = new ApiResponse();
+			object.setCode(409);
+			object.setErrors("driver is exist in database");
+			object.setStatus(false);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		}
 	}
 
 	@PutMapping("update")
