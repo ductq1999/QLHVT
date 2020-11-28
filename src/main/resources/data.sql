@@ -36,11 +36,13 @@ CREATE TABLE  Trip (
 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 `code` VARCHAR(30) NOT NULL,
 `buses_id` INT(6) UNSIGNED NOT NULL,
+`coach_id` INT(6) UNSIGNED NOT NULL,
 `guest_number` INT(6) NOT NULL,
 `fare` INT(6) NOT NULL,
 `date` DATETIME,
 `status` INT(6) NOT NULL, -- 0 1
-FOREIGN KEY (buses_id) REFERENCES Buses(id)
+FOREIGN KEY (buses_id) REFERENCES Buses(id),
+FOREIGN KEY (coach_id) REFERENCES Coach(id)
 );
 
 CREATE TABLE  Driver_Trip (
@@ -48,6 +50,7 @@ CREATE TABLE  Driver_Trip (
 `driver_id` INT(6) UNSIGNED NOT NULL,
 `trip_id` INT(6) UNSIGNED NOT NULL,
 `driver_type` INT(6) NOT NULL, --  1: phu xe, 2: lai xe
+`salary_trip` INT(6) NOT NULL,
 FOREIGN KEY (driver_id) REFERENCES Driver(id),
 FOREIGN KEY (trip_id) REFERENCES Trip(id)
 );
