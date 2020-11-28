@@ -65,4 +65,10 @@ public class DriverTripServiceImpl implements DriverTripService {
 		return driverTripDao.getDriverTripByDriverId(id);
 	}
 
+	@Override
+	public int salaryMonth(Integer id, Integer month, Integer year) {
+		// TODO Auto-generated method stub
+		return driverTripDao.salaryMonth(id, month, year);
+	}
+
 }

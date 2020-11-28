@@ -116,8 +116,28 @@ public class DriverTripDaoImpl implements DriverTripDao {
 	@Override
 	public List<DriverTrip> getDriverTripByDriverId(Integer id) {
 		// TODO Auto-generated method stub
-		String hql = "FROM DriverTrip as d WHERE driver.id = " + id;
+		String hql = "FROM DriverTrip as d WHERE d.driver.id = " + id;
 		return (List<DriverTrip>) entityManager.createQuery(hql).getResultList();
+	}
+
+	@Override
+	public int salaryMonth(Integer id, Integer month, Integer year) {
+		// TODO Auto-generated method stub
+		Integer salaryMonth = 0;
+
+		String hql = "FROM DriverTrip as d WHERE d.id = " + id + " AND month(d.trip.date) = " + month
+				+ " AND year(d.trip.date) = " + year;
+		@SuppressWarnings("unchecked")
+		List<DriverTrip> dtm = entityManager.createQuery(hql).getResultList();
+		if (dtm.size() == 0) {
+			return 0;
+		} else {
+			for (int i = 0; i < dtm.size(); i++) {
+				salaryMonth += dtm.get(i).getSalaryTrip() * dtm.get(i).getDriverType()
+						* dtm.get(i).getTrip().getBuses().getComplexity();
+			}
+			return salaryMonth;
+		}
 	}
 
 }

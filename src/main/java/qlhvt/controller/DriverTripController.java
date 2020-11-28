@@ -100,7 +100,7 @@ public class DriverTripController {
 		object.setTotalRow(rowCount);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("getDriverTripByDriverId/{id}")
 	public ResponseEntity<ApiResponse> getDriverTripByDriverId(@PathVariable("id") Integer id) {
 		ApiResponse object = new ApiResponse();
@@ -109,6 +109,19 @@ public class DriverTripController {
 		object.setErrors(null);
 		object.setStatus(true);
 		object.setData(list);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+	}
+
+	@GetMapping("getSalaryMonth")
+	public ResponseEntity<ApiResponse> getDriverTripByDriverId(@RequestParam(value = "id", required = true) int id,
+			@RequestParam(value = "month", required = true) int month,
+			@RequestParam(value = "year", required = true) int year) {
+		ApiResponse object = new ApiResponse();
+		int sm = driverTripService.salaryMonth(id, month, year);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(sm);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 

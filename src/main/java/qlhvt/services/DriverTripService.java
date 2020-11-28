@@ -21,4 +21,6 @@ public interface DriverTripService {
 	int getRowCount(Integer driverType);
 	
 	List<DriverTrip> getDriverTripByDriverId(Integer id);
+	
+	int salaryMonth(Integer id, Integer month, Integer year);
 }
