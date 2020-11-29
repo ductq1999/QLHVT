@@ -61,5 +61,10 @@ public class CoachServiceImpl implements CoachService {
 		// TODO Auto-generated method stub
 		return coachDao.getRowCount(licensePlate, color, manufacturer, carType, model, chair, status);
 	}
+	
+	public Boolean isExist(Coach coach) {
+		// TODO Auto-generated method stub
+		return coachDao.isExist(coach);
+	}
 
 }

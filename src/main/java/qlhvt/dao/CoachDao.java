@@ -10,6 +10,8 @@ public interface CoachDao {
 	Coach getCoachById(Integer id);
 
 	void addCoach(Coach coach);
+	
+	Boolean isExist(Coach coach);
 
 	void updateCoach(Coach coach);
 

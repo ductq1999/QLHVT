@@ -150,5 +150,11 @@ public class CoachDaoImpl implements CoachDao {
 		List<Coach> lstResult = query.getResultList();
 		return lstResult.size();
 	}
+	
+	public Boolean isExist(Coach coach) {
+		// TODO Auto-generated method stub
+		String hql = "FROM Coach as d WHERE d.status = 1 AND d.license_plate = :license_plate";
+		return entityManager.createQuery(hql).setParameter("license_plate", coach.getLicensePlate()).getResultList().size() > 0 ? true : false;
+	}
 
 }

@@ -10,6 +10,8 @@ public interface TripService {
 	Trip getTripById(Integer id);
 
 	void addTrip(Trip trip);
+	
+	Boolean isExist(Trip trip);
 
 	void updateTrip(Trip trip);
 

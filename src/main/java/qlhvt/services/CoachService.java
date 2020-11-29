@@ -12,6 +12,8 @@ public interface CoachService {
 	void addCoach(Coach coach);
 
 	void updateCoach(Coach coach);
+	
+	Boolean isExist(Coach coach);
 
 	void deleteCoachById(Integer id);
 

@@ -22,30 +22,38 @@ public class Coach implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 
+	//bien so 
 	@Column(name = "license_plate", nullable = false)
 	private String licensePlate;
 
+	//mau xe
 	@Column(name = "color", nullable = false)
 	private String color;
-
+	
+	//hang san xuat
 	@Column(name = "manufacturer", nullable = false)
 	private String manufacturer;
 
+	//doi xe
 	@Column(name = "car_type", nullable = false)
 	private String carType;
 
+	//model
 	@Column(name = "model", nullable = false)
 	private String model;
 
+	//so ghe
 	@Column(name = "chair", nullable = false)
 	private Integer chair;
 
+	//so nam su dung
 	@Column(name = "year_used", nullable = false)
 	private Integer yearUsed;
 	
 	@Column(name = "status", nullable = false)
 	private Integer status;
 
+	//ngay bao duong cuoi cung
 	@Column(name = "last_maintenance", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastMaintenance;

@@ -51,14 +51,22 @@ public class TripController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<ApiResponse> addTrip(@RequestBody Trip trip, UriComponentsBuilder builder) {
-		ApiResponse object = new ApiResponse();
-		tripService.addTrip(trip);
-		object.setCode(200);
-		object.setErrors(null);
-		object.setStatus(true);
-		object.setData(trip);
-		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+	public ResponseEntity<ApiResponse> addTrip(@RequestBody Trip trip, UriComponentsBuilder builder) {		
+		if (tripService.isExist(trip) == false) {
+			ApiResponse object = new ApiResponse();
+			tripService.addTrip(trip);
+			object.setCode(200);
+			object.setErrors(null);
+			object.setStatus(true);
+			object.setData(trip);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		} else {
+			ApiResponse object = new ApiResponse();
+			object.setCode(409);
+			object.setErrors("trip is exist in database");
+			object.setStatus(false);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		}
 	}
 
 	@PutMapping("update")

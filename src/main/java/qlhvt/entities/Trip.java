@@ -25,6 +25,7 @@ public class Trip implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 
+	//ma so chuyen xe
 	@Column(name = "code")
 	private String code;
 
@@ -39,13 +40,18 @@ public class Trip implements Serializable {
 	@JoinColumn(name = "coach_id", nullable = false)
 	private Coach coach;
 
+	
+	//so khach
 	@Column(name = "guest_number")
 	private Integer guestNumber;
 
+	
 	@Column(name = "date", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
+	
+	//gia ve
 	@Column(name = "fare")
 	private Integer fare;
 
