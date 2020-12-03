@@ -52,13 +52,21 @@ public class CoachController {
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addCoach(@RequestBody Coach coach) {
-		ApiResponse object = new ApiResponse();
-		coachService.addCoach(coach);
-		object.setCode(200);
-		object.setErrors(null);
-		object.setStatus(true);
-		object.setData(coach);
-		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		if (coachService.isExist(coach) == false) {
+			ApiResponse object = new ApiResponse();
+			coachService.addCoach(coach);
+			object.setCode(200);
+			object.setErrors(null);
+			object.setStatus(true);
+			object.setData(coach);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		} else {
+			ApiResponse object = new ApiResponse();
+			object.setCode(409);
+			object.setErrors("Coach is exist in database");
+			object.setStatus(false);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		}
 	}
 
 	@PutMapping("update")

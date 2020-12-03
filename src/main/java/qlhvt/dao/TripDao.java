@@ -14,6 +14,8 @@ public interface TripDao {
 	void updateTrip(Trip trip);
 
 	void deleteTripById(Integer id);
+	
+	Boolean isExist(Trip trip);
 
 	List<Trip> searchTripByCondition(int page, int pageSize, String columnSortName, Boolean asc, String code,
 			Integer status);

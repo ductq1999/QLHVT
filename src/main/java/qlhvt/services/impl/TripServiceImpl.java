@@ -69,5 +69,10 @@ public class TripServiceImpl implements TripService {
 		// TODO Auto-generated method stub
 		return tripDao.getTotalIncome(id);
 	}
+	
+	public Boolean isExist(Trip trip) {
+		// TODO Auto-generated method stub
+		return tripDao.isExist(trip);
+	}
 
 }
