@@ -125,7 +125,7 @@ public class DriverTripDaoImpl implements DriverTripDao {
 		// TODO Auto-generated method stub
 		Integer salaryMonth = 0;
 
-		String hql = "FROM DriverTrip as d WHERE d.id = " + id + " AND month(d.trip.date) = " + month
+		String hql = "FROM DriverTrip as d WHERE d.driver.id = " + id + " AND month(d.trip.date) = " + month
 				+ " AND year(d.trip.date) = " + year;
 		@SuppressWarnings("unchecked")
 		List<DriverTrip> dtm = entityManager.createQuery(hql).getResultList();
