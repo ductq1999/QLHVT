@@ -63,7 +63,7 @@ public class BusesDaoImpl implements BusesDao {
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public List<Buses> searchBusesByCondition(int page, int pageSize, String columnSortName, Boolean asc, String first,
-			String last, String length, Integer complexity, Integer status) {
+			String last, Integer length, Integer complexity, Integer status) {
 		// TODO Auto-generated method stub
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
@@ -78,7 +78,7 @@ public class BusesDaoImpl implements BusesDao {
 			predicates.add(criteriaBuilder.like(from.get("last"), "%" + last + "%"));
 		}
 		if (length != null && !length.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("length"), "%" + length + "%"));
+			predicates.add(criteriaBuilder.equal(from.get("length"), length));
 		}
 		if (complexity != null && !complexity.equals("")) {
 			predicates.add(criteriaBuilder.equal(from.get("complexity"), complexity));
@@ -107,7 +107,7 @@ public class BusesDaoImpl implements BusesDao {
 
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
-	public int getRowCount(String first, String last, String length, Integer complexity, Integer status) {
+	public int getRowCount(String first, String last, Integer length, Integer complexity, Integer status) {
 		// TODO Auto-generated method stub
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
@@ -122,7 +122,7 @@ public class BusesDaoImpl implements BusesDao {
 			predicates.add(criteriaBuilder.like(from.get("last"), "%" + last + "%"));
 		}
 		if (length != null && !length.equals("")) {
-			predicates.add(criteriaBuilder.like(from.get("length"), "%" + length + "%"));
+			predicates.add(criteriaBuilder.equal(from.get("length"), length));
 		}
 		if (complexity != null && !complexity.equals("")) {
 			predicates.add(criteriaBuilder.equal(from.get("complexity"), complexity));

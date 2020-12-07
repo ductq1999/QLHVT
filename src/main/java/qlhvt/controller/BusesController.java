@@ -88,7 +88,7 @@ public class BusesController {
 			@RequestParam(value = "asc", required = false) Boolean asc,
 			@RequestParam(value = "first", required = false) String first,
 			@RequestParam(value = "last", required = false) String last,
-			@RequestParam(value = "length", required = false) String length,
+			@RequestParam(value = "length", required = false) Integer length,
 			@RequestParam(value = "complexity", required = false) Integer complexity,
 			@RequestParam(value = "status", required = false) Integer status) {
 		ApiResponse object = new ApiResponse();

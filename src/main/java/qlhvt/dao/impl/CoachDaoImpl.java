@@ -153,8 +153,8 @@ public class CoachDaoImpl implements CoachDao {
 	
 	public Boolean isExist(Coach coach) {
 		// TODO Auto-generated method stub
-		String hql = "FROM Coach as d WHERE d.status = 1 AND d.license_plate = :license_plate";
-		return entityManager.createQuery(hql).setParameter("license_plate", coach.getLicensePlate()).getResultList().size() > 0 ? true : false;
+		String hql = "FROM Coach as c WHERE c.status = 1 AND c.licensePlate = :licensePlate";
+		return entityManager.createQuery(hql).setParameter("licensePlate", coach.getLicensePlate()).getResultList().size() > 0 ? true : false;
 	}
 
 }
