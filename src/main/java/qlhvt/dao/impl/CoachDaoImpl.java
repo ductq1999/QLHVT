@@ -153,31 +153,54 @@ public class CoachDaoImpl implements CoachDao {
 		List<Coach> lstResult = query.getResultList();
 		return lstResult.size();
 	}
-	
+
 	public Boolean isExist(Coach coach) {
 		// TODO Auto-generated method stub
 		String hql = "FROM Coach as c WHERE c.status = 1 AND c.licensePlate = :licensePlate";
-		return entityManager.createQuery(hql).setParameter("licensePlate", coach.getLicensePlate()).getResultList().size() > 0 ? true : false;
+		return entityManager.createQuery(hql).setParameter("licensePlate", coach.getLicensePlate()).getResultList()
+				.size() > 0 ? true : false;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Date getNextMaintenance(Integer id) {
 		// TODO Auto-generated method stub
-		Date d = new Date();
-		Integer day = 0;
 		String hql = "FROM Trip as t WHERE t.status = 1 AND t.coach.id = " + id + " AND t.coach.status = 1"
 				+ " AND t.date > t.coach.lastMaintenance";
 		List<Trip> list = entityManager.createQuery(hql).getResultList();
 		if (list.size() == 0) {
-			return null;
+			Date date = new Date();
+			Coach coach = new Coach();
+			coach = this.getCoachById(id);
+			date = coach.getLastMaintenance();
+			DateTime dt = new DateTime(date);
+			return dt.plusDays(360).toDate();
 		} else {
+			Date d = new Date();
+			Integer day = 0;
 			for (int i = 0; i < list.size(); i++) {
 				day += list.get(i).getBuses().getLength() * list.get(i).getBuses().getComplexity() / 100;
 				d = list.get(0).getCoach().getLastMaintenance();
 			}
 			DateTime dt = new DateTime(d);
 			return dt.plusDays(360 - day).toDate();
+		}
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public int getTotalIncome(Integer id) {
+		// TODO Auto-generated method stub
+		Integer totalIncome = 0;
+		String hql = "FROM Trip as t WHERE t.status = 1 AND t.coach.id = " + id;
+		List<Trip> list = entityManager.createQuery(hql).getResultList();
+		if (list.size() == 0) {
+			return 0;
+		} else {
+			for (int i = 0; i < list.size(); i++) {
+				totalIncome += list.get(i).getFare() * list.get(i).getGuestNumber();
+			}
+			return totalIncome;
 		}
 	}
 

@@ -23,6 +23,4 @@ public interface TripDao {
 	int getRowCount(String code, Integer status);
 
 	List<Trip> getTripByCoachId(Integer id);
-	
-	int getTotalIncome(Integer id);
 }

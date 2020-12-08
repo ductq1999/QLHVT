@@ -25,4 +25,6 @@ public interface CoachService {
 			Integer chair, Integer status);
 	
 	Date getNextMaintenance(Integer id);
+	
+	int getTotalIncome(Integer id);
 }

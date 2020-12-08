@@ -25,4 +25,6 @@ public interface CoachDao {
 			Integer status);
 	
 	Date getNextMaintenance(Integer id);
+	
+	int getTotalIncome(Integer id);
 }

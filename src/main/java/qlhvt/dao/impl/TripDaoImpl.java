@@ -135,22 +135,4 @@ public class TripDaoImpl implements TripDao {
 		String hql = "FROM Trip as t WHERE t.status = 1 AND t.coach.id = " + id;
 		return (List<Trip>) entityManager.createQuery(hql).getResultList();
 	}
-
-	@SuppressWarnings({ "unchecked" })
-	@Override
-	public int getTotalIncome(Integer id) {
-		// TODO Auto-generated method stub
-		Integer totalIncome = 0;
-		String hql = "FROM Trip as t WHERE t.status = 1 AND t.coach.id = " + id;
-		List<Trip> list = entityManager.createQuery(hql).getResultList();
-		if (list.size() == 0) {
-			return 0;
-		} else {
-			for (int i = 0; i < list.size(); i++) {
-				totalIncome += list.get(i).getFare() * list.get(i).getGuestNumber();
-			}
-			return totalIncome;
-		}
-	}
-
 }

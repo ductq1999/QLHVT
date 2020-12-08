@@ -120,15 +120,4 @@ public class TripController {
 		object.setData(list);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
-
-	@GetMapping("/getTotalIncome/{id}")
-	public ResponseEntity<ApiResponse> getTotalIncome(@PathVariable("id") Integer id) {
-		ApiResponse object = new ApiResponse();
-		int ti = tripService.getTotalIncome(id);
-		object.setCode(200);
-		object.setErrors(null);
-		object.setStatus(true);
-		object.setData(ti);
-		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
-	}
 }

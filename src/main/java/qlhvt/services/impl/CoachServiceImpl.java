@@ -72,5 +72,12 @@ public class CoachServiceImpl implements CoachService {
 		// TODO Auto-generated method stub
 		return coachDao.getNextMaintenance(id);
 	}
+	
+	@Override
+	public int getTotalIncome(Integer id) {
+		// TODO Auto-generated method stub
+		return coachDao.getTotalIncome(id);
+	}
+	
 
 }
