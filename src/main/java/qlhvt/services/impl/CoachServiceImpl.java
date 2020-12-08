@@ -1,5 +1,6 @@
 package qlhvt.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,11 @@ public class CoachServiceImpl implements CoachService {
 	public Boolean isExist(Coach coach) {
 		// TODO Auto-generated method stub
 		return coachDao.isExist(coach);
+	}
+	
+	public Date getNextMaintenance(Integer id) {
+		// TODO Auto-generated method stub
+		return coachDao.getNextMaintenance(id);
 	}
 
 }

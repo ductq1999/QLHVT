@@ -1,5 +1,6 @@
 package qlhvt.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import qlhvt.entities.Coach;
@@ -22,4 +23,6 @@ public interface CoachDao {
 
 	int getRowCount(String licensePlate, String color, String manufacturer, String carType, String model, Integer chair,
 			Integer status);
+	
+	Date getNextMaintenance(Integer id);
 }

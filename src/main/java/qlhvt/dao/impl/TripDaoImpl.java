@@ -44,12 +44,13 @@ public class TripDaoImpl implements TripDao {
 		entityManager.persist(trip);
 
 	}
-	
+
 	@Override
 	public Boolean isExist(Trip trip) {
 		// TODO Auto-generated method stub
 		String hql = "FROM Trip as d WHERE d.status = 1 AND d.code = :code";
-		return entityManager.createQuery(hql).setParameter("code", trip.getCode()).getResultList().size() > 0 ? true : false;
+		return entityManager.createQuery(hql).setParameter("code", trip.getCode()).getResultList().size() > 0 ? true
+				: false;
 	}
 
 	@Override

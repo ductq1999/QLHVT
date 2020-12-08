@@ -51,7 +51,7 @@ public class TripController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<ApiResponse> addTrip(@RequestBody Trip trip, UriComponentsBuilder builder) {		
+	public ResponseEntity<ApiResponse> addTrip(@RequestBody Trip trip, UriComponentsBuilder builder) {
 		if (tripService.isExist(trip) == false) {
 			ApiResponse object = new ApiResponse();
 			tripService.addTrip(trip);

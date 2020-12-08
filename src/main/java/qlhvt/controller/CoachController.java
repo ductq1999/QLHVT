@@ -1,5 +1,6 @@
 package qlhvt.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +114,17 @@ public class CoachController {
 		object.setPage(page);
 		object.setPageSize(pageSize);
 		object.setTotalRow(rowCount);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getNextMaintenance/{id}")
+	public ResponseEntity<ApiResponse> getNextMaintenance(@PathVariable("id") Integer id) {
+		ApiResponse object = new ApiResponse();
+		Date nm = coachService.getNextMaintenance(id);
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(nm);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 }

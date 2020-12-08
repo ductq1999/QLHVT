@@ -1,6 +1,7 @@
 package qlhvt.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,11 +12,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import qlhvt.dao.CoachDao;
 import qlhvt.entities.Coach;
+import qlhvt.entities.Trip;
 
 @Transactional
 @Repository(value = "coachDao")
@@ -155,6 +158,27 @@ public class CoachDaoImpl implements CoachDao {
 		// TODO Auto-generated method stub
 		String hql = "FROM Coach as c WHERE c.status = 1 AND c.licensePlate = :licensePlate";
 		return entityManager.createQuery(hql).setParameter("licensePlate", coach.getLicensePlate()).getResultList().size() > 0 ? true : false;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Date getNextMaintenance(Integer id) {
+		// TODO Auto-generated method stub
+		Date d = new Date();
+		Integer day = 0;
+		String hql = "FROM Trip as t WHERE t.status = 1 AND t.coach.id = " + id + " AND t.coach.status = 1"
+				+ " AND t.date > t.coach.lastMaintenance";
+		List<Trip> list = entityManager.createQuery(hql).getResultList();
+		if (list.size() == 0) {
+			return null;
+		} else {
+			for (int i = 0; i < list.size(); i++) {
+				day += list.get(i).getBuses().getLength() * list.get(i).getBuses().getComplexity() / 100;
+				d = list.get(0).getCoach().getLastMaintenance();
+			}
+			DateTime dt = new DateTime(d);
+			return dt.plusDays(360 - day).toDate();
+		}
 	}
 
 }
