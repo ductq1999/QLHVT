@@ -60,4 +60,10 @@ public class BusesServiceImpl implements BusesService {
 		return busesDao.getRowCount(first, last, length, complexity, status);
 	}
 
+	@Override
+	public Boolean isExist(Buses buses) {
+		// TODO Auto-generated method stub
+		return busesDao.isExist(buses);
+	}
+
 }

@@ -20,4 +20,6 @@ public interface BusesDao {
 			String last, Integer length, Integer complexity, Integer status);
 
 	int getRowCount(String first, String last, Integer length, Integer complexity, Integer status);
+	
+	Boolean isExist(Buses buses);
 }

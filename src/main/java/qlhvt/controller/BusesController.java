@@ -51,13 +51,22 @@ public class BusesController {
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addBuses(@RequestBody Buses buses) {
-		ApiResponse object = new ApiResponse();
-		busesService.addBuses(buses);
-		object.setCode(200);
-		object.setErrors(null);
-		object.setStatus(true);
-		object.setData(buses);
-		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		if (busesService.isExist(buses) == false) {
+			ApiResponse object = new ApiResponse();
+			busesService.addBuses(buses);
+			object.setCode(200);
+			object.setErrors(null);
+			object.setStatus(true);
+			object.setData(buses);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		} else {
+			ApiResponse object = new ApiResponse();
+			object.setCode(409);
+			object.setErrors("Buses is exist in database");
+			object.setStatus(true);
+			object.setData(buses);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		}
 	}
 
 	@PutMapping("update")

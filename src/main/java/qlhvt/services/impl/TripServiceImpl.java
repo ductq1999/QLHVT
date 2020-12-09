@@ -68,5 +68,4 @@ public class TripServiceImpl implements TripService {
 		// TODO Auto-generated method stub
 		return tripDao.isExist(trip);
 	}
-
 }

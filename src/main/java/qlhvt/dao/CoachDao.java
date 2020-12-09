@@ -27,4 +27,6 @@ public interface CoachDao {
 	Date getNextMaintenance(Integer id);
 	
 	int getTotalIncome(Integer id);
+	
+	List<Coach> getCoachTimeOverdue(Integer id);
 }

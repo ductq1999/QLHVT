@@ -51,13 +51,21 @@ public class DriverTripController {
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addDriverTrip(@RequestBody DriverTrip driverTrip) {
-		ApiResponse object = new ApiResponse();
-		driverTripService.addDriverTrip(driverTrip);
-		object.setCode(200);
-		object.setErrors(null);
-		object.setStatus(true);
-		object.setData(driverTrip);
-		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		if (driverTripService.isExist(driverTrip) == false) {
+			ApiResponse object = new ApiResponse();
+			driverTripService.addDriverTrip(driverTrip);
+			object.setCode(200);
+			object.setErrors(null);
+			object.setStatus(true);
+			object.setData(driverTrip);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		} else {
+			ApiResponse object = new ApiResponse();
+			object.setCode(409);
+			object.setErrors("exist driverTrip in database");
+			object.setStatus(true);
+			return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+		}
 	}
 
 	@PutMapping("update")

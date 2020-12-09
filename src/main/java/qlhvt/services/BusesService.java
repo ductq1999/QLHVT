@@ -20,4 +20,5 @@ public interface BusesService {
 
 	int getRowCount(String first, String last, Integer length, Integer complexity, Integer status);
 
+	Boolean isExist(Buses buses);
 }

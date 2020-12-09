@@ -137,4 +137,12 @@ public class BusesDaoImpl implements BusesDao {
 		return lstResult.size();
 	}
 
+	@Override
+	public Boolean isExist(Buses buses) {
+		// TODO Auto-generated method stub
+		String hql = "FROM Buses as b WHERE b.status = 1 AND b.first = :first AND b.last = :last";
+		return entityManager.createQuery(hql).setParameter("first", buses.getFirst())
+				.setParameter("last", buses.getLast()).getResultList().size() > 0 ? true : false;
+	}
+
 }

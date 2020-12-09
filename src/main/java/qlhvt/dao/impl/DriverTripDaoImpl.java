@@ -140,4 +140,12 @@ public class DriverTripDaoImpl implements DriverTripDao {
 		}
 	}
 
+	@Override
+	public Boolean isExist(DriverTrip driverTrip) {
+		// TODO Auto-generated method stub
+		String hql = "FROM DriverTrip as d WHERE d.driver = :driver AND d.trip = :trip";
+		return entityManager.createQuery(hql).setParameter("driver", driverTrip.getDriver())
+				.setParameter("trip", driverTrip.getTrip()).getResultList().size() > 0 ? true : false;
+	}
+
 }
