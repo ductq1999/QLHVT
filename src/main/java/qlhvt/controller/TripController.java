@@ -51,7 +51,7 @@ public class TripController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<ApiResponse> addTrip(@RequestBody Trip trip, UriComponentsBuilder builder) {		
+	public ResponseEntity<ApiResponse> addTrip(@RequestBody Trip trip, UriComponentsBuilder builder) {
 		if (tripService.isExist(trip) == false) {
 			ApiResponse object = new ApiResponse();
 			tripService.addTrip(trip);
@@ -118,17 +118,6 @@ public class TripController {
 		object.setErrors(null);
 		object.setStatus(true);
 		object.setData(list);
-		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
-	}
-
-	@GetMapping("/getTotalIncome/{id}")
-	public ResponseEntity<ApiResponse> getTotalIncome(@PathVariable("id") Integer id) {
-		ApiResponse object = new ApiResponse();
-		int ti = tripService.getTotalIncome(id);
-		object.setCode(200);
-		object.setErrors(null);
-		object.setStatus(true);
-		object.setData(ti);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
 }

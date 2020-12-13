@@ -71,4 +71,10 @@ public class DriverTripServiceImpl implements DriverTripService {
 		return driverTripDao.salaryMonth(id, month, year);
 	}
 
+	@Override
+	public Boolean isExist(DriverTrip driverTrip) {
+		// TODO Auto-generated method stub
+		return driverTripDao.isExist(driverTrip);
+	}
+
 }

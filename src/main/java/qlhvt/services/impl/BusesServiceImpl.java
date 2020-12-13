@@ -48,16 +48,22 @@ public class BusesServiceImpl implements BusesService {
 
 	@Override
 	public List<Buses> searchBusesByCondition(int page, int pageSize, String columnSortName, Boolean asc, String first,
-			String last, String length, Integer complexity, Integer status) {
+			String last, Integer length, Integer complexity, Integer status) {
 		// TODO Auto-generated method stub
 		return busesDao.searchBusesByCondition(page, pageSize, columnSortName, asc, first, last, length, complexity,
 				status);
 	}
 
 	@Override
-	public int getRowCount(String first, String last, String length, Integer complexity, Integer status) {
+	public int getRowCount(String first, String last, Integer length, Integer complexity, Integer status) {
 		// TODO Auto-generated method stub
 		return busesDao.getRowCount(first, last, length, complexity, status);
+	}
+
+	@Override
+	public Boolean isExist(Buses buses) {
+		// TODO Auto-generated method stub
+		return busesDao.isExist(buses);
 	}
 
 }

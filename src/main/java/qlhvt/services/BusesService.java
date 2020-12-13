@@ -16,8 +16,9 @@ public interface BusesService {
 	void deleteBusesById(Integer id);
 
 	List<Buses> searchBusesByCondition(int page, int pageSize, String columnSortName, Boolean asc, String first,
-			String last, String length, Integer complexity, Integer status);
+			String last, Integer length, Integer complexity, Integer status);
 
-	int getRowCount(String first, String last, String length, Integer complexity, Integer status);
+	int getRowCount(String first, String last, Integer length, Integer complexity, Integer status);
 
+	Boolean isExist(Buses buses);
 }

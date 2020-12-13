@@ -64,15 +64,8 @@ public class TripServiceImpl implements TripService {
 		return tripDao.getTripByCoachId(id);
 	}
 
-	@Override
-	public int getTotalIncome(Integer id) {
-		// TODO Auto-generated method stub
-		return tripDao.getTotalIncome(id);
-	}
-	
 	public Boolean isExist(Trip trip) {
 		// TODO Auto-generated method stub
 		return tripDao.isExist(trip);
 	}
-
 }

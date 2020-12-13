@@ -23,4 +23,6 @@ public interface DriverTripService {
 	List<DriverTrip> getDriverTripByDriverId(Integer id);
 	
 	int salaryMonth(Integer id, Integer month, Integer year);
+	
+	Boolean isExist(DriverTrip driverTrip);
 }

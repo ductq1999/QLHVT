@@ -1,5 +1,6 @@
 package qlhvt.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +67,23 @@ public class CoachServiceImpl implements CoachService {
 		// TODO Auto-generated method stub
 		return coachDao.isExist(coach);
 	}
+	
+	public Date getNextMaintenance(Integer id) {
+		// TODO Auto-generated method stub
+		return coachDao.getNextMaintenance(id);
+	}
+	
+	@Override
+	public int getTotalIncome(Integer id) {
+		// TODO Auto-generated method stub
+		return coachDao.getTotalIncome(id);
+	}
 
+	@Override
+	public List<Coach> getCoachTimeOverdue() {
+		// TODO Auto-generated method stub
+		return coachDao.getCoachTimeOverdue();
+	}
+	
+	
 }

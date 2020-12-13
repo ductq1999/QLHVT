@@ -26,7 +26,7 @@ public class Buses implements Serializable {
 	private String last;
 	
 	@Column(name = "length", nullable = false)
-	private String length;
+	private Integer length;
 
 	@Column(name = "complexity", nullable = false)
 	private Integer complexity;
@@ -58,11 +58,11 @@ public class Buses implements Serializable {
 		this.last = last;
 	}
 
-	public String getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
-	public void setLength(String length) {
+	public void setLength(Integer length) {
 		this.length = length;
 	}
 
