@@ -78,6 +78,12 @@ public class CoachServiceImpl implements CoachService {
 		// TODO Auto-generated method stub
 		return coachDao.getTotalIncome(id);
 	}
-	
 
+	@Override
+	public List<Coach> getCoachTimeOverdue() {
+		// TODO Auto-generated method stub
+		return coachDao.getCoachTimeOverdue();
+	}
+	
+	
 }

@@ -206,11 +206,18 @@ public class CoachDaoImpl implements CoachDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Coach> getCoachTimeOverdue(Integer id) {
+	public List<Coach> getCoachTimeOverdue() {
 		// TODO Auto-generated method stub
 		Date date = new Date();
-		String hql = "FROM Coach as c WHERE c.status = 1 AND " + date + " > " + this.getNextMaintenance(id);
-		return (List<Coach>) entityManager.createQuery(hql).getResultList();
+		String hql = "FROM Coach as c WHERE c.status = 1";
+		List<Coach> list = entityManager.createQuery(hql).getResultList();
+		List<Coach> coachOverDue = new ArrayList<>();
+		for(int i = 0; i < list.size(); i++) {
+			if(this.getNextMaintenance(list.get(i).getId()).before(date)) {
+				coachOverDue.add(list.get(i));
+			}
+		}
+		return coachOverDue;
 	}
 
 }

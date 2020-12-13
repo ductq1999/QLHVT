@@ -28,5 +28,5 @@ public interface CoachDao {
 	
 	int getTotalIncome(Integer id);
 	
-	List<Coach> getCoachTimeOverdue(Integer id);
+	List<Coach> getCoachTimeOverdue();
 }

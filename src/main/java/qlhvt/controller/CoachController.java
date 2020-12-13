@@ -138,4 +138,15 @@ public class CoachController {
 		object.setData(ti);
 		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
 	}
+	
+	@GetMapping("/getCoachOverDue")
+	public ResponseEntity<ApiResponse> getCoachTimeOverDue() {
+		ApiResponse object = new ApiResponse();
+		List<Coach> list = coachService.getCoachTimeOverdue();
+		object.setCode(200);
+		object.setErrors(null);
+		object.setStatus(true);
+		object.setData(list);
+		return new ResponseEntity<ApiResponse>(object, HttpStatus.OK);
+	}
 }
